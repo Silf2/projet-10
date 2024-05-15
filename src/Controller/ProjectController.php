@@ -27,11 +27,18 @@ class ProjectController extends AbstractController
     ) {
     }
 
+
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        $projects = $this->projectRepository->findAll();
+        return $this->render('authentification/welcome.html.twig');
+    }
 
+    #[Route('/allProjects', name: 'app_allProjects')]
+    public function allProjects(): Response
+    {
+        $projects = $this->projectRepository->findAll();
+    
         return $this->render('project/home.html.twig', [
             'projects' => $projects,
         ]);

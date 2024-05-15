@@ -529,3 +529,49 @@ form .select2-container--default .select2-selection--multiple .select2-selection
         padding: 13px;
     }
 }
+
+
+/*Ajout pour les pages de logs*/
+
+.log-page{
+    background: url("/img/bg-logout.png") center center no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log-header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+}
+
+.log-main-container{
+    background: #4D8077;
+    width: 710px;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 30px;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+.log-page h1, .log-page p{
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.sous-titre{
+    font-size: 22px;
+    margin-bottom: 100px;
+}
+
+.loginButton{
+    margin-top: 65px;
+    background: #1C5B50;
+    color: #ffff;
+    justify-content: center;
+}
