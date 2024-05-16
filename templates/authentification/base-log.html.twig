@@ -11,9 +11,9 @@
     </head>
 
     <body class="log-page">
-        <header class="log-header">
+        <a href="{{ path('app_home') }}" class="log-header">
             <img src="{{ asset('img/logo.png') }}" alt="Logo Tasklinker"/>
-        </header>
+        </a>
         <div class="log-main-container">
             {% block body %}{% endblock %}
         </div>

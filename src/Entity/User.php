@@ -242,4 +242,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function isAdmin(): bool 
+    {
+        return in_array('ROLE_ADMIN', $this->roles);
+    }
+
+    public function setAdmin(bool $admin): static 
+    {
+        $this->roles = $admin ? ['ROLE_ADMIN'] : [];
+
+        return $this;
+    }
 }

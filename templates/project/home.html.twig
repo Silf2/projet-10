@@ -14,18 +14,22 @@
                         <h2>{{ project.name }}</h2>
                         </a>
                         <div class="card-project-icons">
-                        <a href="#"><i class="fa-solid fa-pen"></i></a>
-                        <a href="{{ path('app_project_archive', {'id' : project.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_project_edit', {'id' : project.id}) }}"><i class="fa-solid fa-pen"></i></a>
+                            <a href="{{ path('app_project_archive', {'id' : project.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                        {% endif %}
                         </div>
                     </article>
                 {% endif %}
             {% endfor %}
-            <article class="card-project">
-                <a href="{{ path('app_project_add') }}">
-                <i class="fa-solid fa-circle-plus add-project-icon"></i>
-                <h2>Ajouter un projet</h2>
-                </a>
-            </article>
+            {% if is_granted('ROLE_ADMIN') %}
+                <article class="card-project">
+                    <a href="{{ path('app_project_add') }}">
+                    <i class="fa-solid fa-circle-plus add-project-icon"></i>
+                    <h2>Ajouter un projet</h2>
+                    </a>
+                </article>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

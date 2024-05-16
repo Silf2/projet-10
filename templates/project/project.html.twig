@@ -10,7 +10,9 @@
                     <div class="avatar">{{ initials }}</div>
                 {% endfor %}
             </div>
-            <a class="button" href="{{ path('app_project_edit', {'id' : project.id}) }}">Modifier</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="button" href="{{ path('app_project_edit', {'id' : project.id}) }}">Modifier</a>
+            {% endif %}
         </div>
 {% endblock %}
 

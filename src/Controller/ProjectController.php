@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProjectController extends AbstractController
@@ -27,7 +28,7 @@ class ProjectController extends AbstractController
     ) {
     }
 
-    #[Route('/allProjects', name: 'app_allProjects')]
+    #[Route('/projects', name: 'app_allProjects')]
     public function allProjects(): Response
     {
         $projects = $this->projectRepository->findAll();
@@ -37,7 +38,7 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('/projet/{id}', name : 'app_project')]
+    #[Route('/project/{id<\d+>}', name : 'app_project')]
     public function project(int $id): Response {
         $project = $this->projectRepository->find($id);
         $statuses = $this->statusRepository->findAll();
@@ -54,6 +55,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/add', name : 'app_project_add')]
+    #[IsGranted('ROLE_ADMIN')]
     public function addProject(Request $request): Response {
         $project = new Project();
         $project->setArchived(false);
@@ -79,6 +81,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/{id}/edit', name : 'app_project_edit')]
+    #[IsGranted('ROLE_ADMIN')]
     public function editProject(Request $request, int $id) : Response {
         $project = $this->projectRepository->find($id);
         $users = $this->userRepository->findAll();
@@ -109,6 +112,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/{id}/archive', name : 'app_project_archive')]
+    #[IsGranted('ROLE_ADMIN')]
     public function archiveProject(int $id) : Response {
         $project = $this->projectRepository->find($id);
         $project->setArchived(true);

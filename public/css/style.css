@@ -547,8 +547,8 @@ form .select2-container--default .select2-selection--multiple .select2-selection
 
 .log-header{
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 2%;
+    left: 2%;
     background: transparent;
 }
 
@@ -646,4 +646,17 @@ div#current-user .avatar {
     background: #fff;
     font-size: 18px;
     font-weight: 700;
+}
+
+.errorCode{
+    font-size: 90px;
+    margin-bottom: 0;
+}
+
+.errorMessage{
+    font-size: 20px !important;
+}
+
+.errorLink{
+    color: #FFFFFF
 }

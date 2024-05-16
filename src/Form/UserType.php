@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,6 +25,13 @@ class UserType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('status', TextType::class, ['label' => 'Statut'])
+            ->add('admin', ChoiceType::class, [
+                'label' => 'Rôle',
+                'choices' => [
+                    'Collaborateur' => false,
+                    'Chef de projet' => true,
+                ],
+            ])
         ;
     }
 
