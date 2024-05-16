@@ -1,0 +1,10 @@
+{% extends 'authentification/base-log.html.twig' %}
+
+{% block body %}
+    <h1>Une erreur s'est produite</h1>
+
+    <h2 class="errorCode">{{ errorCode }}</h2>
+    <p class="errorMessage">{{ errorMessage }}</p>
+
+    <a href={{ path('app_allProjects')}} class="errorLink">Retour a la page d'acceuil</a>
+{% endblock %}
