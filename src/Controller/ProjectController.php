@@ -27,13 +27,6 @@ class ProjectController extends AbstractController
     ) {
     }
 
-
-    #[Route('/', name: 'app_home')]
-    public function index(): Response
-    {
-        return $this->render('authentification/welcome.html.twig');
-    }
-
     #[Route('/allProjects', name: 'app_allProjects')]
     public function allProjects(): Response
     {

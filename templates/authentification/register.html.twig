@@ -1,0 +1,16 @@
+{% extends 'authentification/base-log.html.twig' %}
+
+{% block body %}
+    <h1>S'inscrire</h1>
+
+    {{ form_start(form) }}
+
+        {{ form_row(form.first_name) }}
+        {{ form_row(form.last_name)}}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password.first) }}
+        {{ form_row(form.password.second) }}
+        <button class="button button-submit">Continuer</button>
+        <a href='{{ path('app_login') }}' class="redirection">Vous avez déjà un compte ?</a>
+    {{ form_end(form) }}
+{% endblock %}

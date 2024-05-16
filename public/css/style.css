@@ -15,6 +15,10 @@ html, body {
     position: fixed;
 }
 
+form label{
+    color: #FFFFFF !important;
+}
+
 div#main-container {
     display: flex;
     min-height: 100vh;
@@ -556,12 +560,19 @@ form .select2-container--default .select2-selection--multiple .select2-selection
     border-radius: 30px;
     padding-top: 75px;
     padding-bottom: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.log-page h1, .log-page p{
+.log-page, .log-page p{
     display: flex;
     justify-content: center;
     color: #FFFFFF;
+}
+
+.log-page p{
+    font-size: 18px;
 }
 
 .sous-titre{
@@ -570,8 +581,69 @@ form .select2-container--default .select2-selection--multiple .select2-selection
 }
 
 .loginButton{
-    margin-top: 65px;
     background: #1C5B50;
+    margin-top: 2%;
     color: #ffff;
+    padding: 4% 10% 4% 10%;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+.connect{
+    background: #B1D89D;
+    color: #4D8077;
+}
+
+.separator{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    width: 400px;
+    margin-top: 2%;
+    justify-content: space-between;
+}
+
+.separator hr{
+    width: 130px;
+}
+
+.redirection{
     justify-content: center;
+    display: flex;
+    margin-top: 35px;
+    margin-bottom: -35px;
+    color: #FFFFFF;
+}
+
+.accessRegister{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.accessRegister a{
+    font-weight: bold;
+    color: #FFFFFF
+}
+
+.errorLogin{
+    text-align: center;
+    color: #d10000e8;
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 15px;
+}    
+
+div#current-user .avatar {
+    border: 1px solid #1C5B50;
+    color: #1C5B50;
+    text-decoration: none;
+    margin-left: auto;
+    background: #fff;
+    font-size: 18px;
+    font-weight: 700;
 }

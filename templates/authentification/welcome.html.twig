@@ -5,5 +5,12 @@
     <p class="sous-titre">Commencez dès maintenant - gratuitement</p>
 
     <p>Vous avez déjà un compte ?</p>
-    <a href="#" class="loginButton">Se connecter </a>
+    <a href="{{ path('app_login') }}" class="loginButton">Se connecter </a>
+    <div class="separator">
+        <hr>
+        <p>ou</p>
+        <hr>
+    </div>
+    <a href="{{ path('app_register') }}" class="loginButton connect">S'inscrire </a>
+
 {% endblock %}

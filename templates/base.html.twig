@@ -21,7 +21,7 @@
                 </a>
                 <ul id="main-menu">
                 <li {% if '/user' not in app.request.uri%}class="active"{% endif %}>
-                    <a href="{{ path('app_home')}}">
+                    <a href="{{ path('app_allProjects')}}">
                     <i class="fa-solid fa-list-check"></i> Projets
                     </a>
                 </li>
@@ -34,7 +34,13 @@
             </nav>
             <main>
                 <header>
-                    <div id="current-user"></div>
+                    <div id="current-user">
+                        {% if app.user %}
+                            <a href="{{ path('app_logout') }}" class="avatar">
+                                {{ app.user.firstName | first }}{{ app.user.lastName | first }}
+                            </a>
+                        {% endif %}
+                    </div>
                     <div id="title-page">
                         {% block header %}{% endblock %}
                     </div>
