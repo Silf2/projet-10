@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class TaskController extends AbstractController
 {
@@ -19,6 +20,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/project/{id}/task/add', name: 'app_task_add')]
+    #[IsGranted('acces_projet', 'id')]
     public function addTask(Request $request, int $id): Response {
         $project = $this->projectRepository->find($id);
         $status = $this->statusRepository->findAll();
@@ -45,6 +47,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/project/{projectId}/task/{taskId}/edit', name: 'app_task_edit')]
+    #[IsGranted('acces_tache', 'taskId')]
     public function editTask(Request $request, int $taskId): Response {
         $task = $this->taskRepository->find($taskId);
         $project = $task->getProject();
@@ -71,6 +74,7 @@ class TaskController extends AbstractController
     }
 
     #[Route('/project/{projectId}/task/{taskId}/delete', name: 'app_task_delete')]
+    #[IsGranted('acces_tache', 'taskId')]
     public function deleteTask(int $taskId): Response{
         $task = $this->taskRepository->find($taskId);
         $project = $task->getProject();

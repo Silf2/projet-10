@@ -6,9 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Security\Core\Security;
 
 class ErrorController extends AbstractController
 {
+
     #[Route('/error', name: 'app_error')]
     public function showError(\Throwable $exception): Response
     {

@@ -31,7 +31,13 @@ class ProjectController extends AbstractController
     #[Route('/projects', name: 'app_allProjects')]
     public function allProjects(): Response
     {
-        $projects = $this->projectRepository->findAll();
+        if($this->getUser()->isAdmin()) {
+            $projects = $this->projectRepository->findBy([
+                'archived' => false,
+            ]);
+        } else {
+            $projects = $this->getUser()->getProjects()->filter(function (Project $project) { return !$project->isArchived(); });
+        }
     
         return $this->render('project/home.html.twig', [
             'projects' => $projects,
@@ -39,13 +45,14 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/{id<\d+>}', name : 'app_project')]
+    #[IsGranted('acces_projet', 'id')]
     public function project(int $id): Response {
         $project = $this->projectRepository->find($id);
         $statuses = $this->statusRepository->findAll();
         dump($project->getTasksByStatus(Task::STATUS_LABEL_TODO));
 
-        if(!$project){
-            return $this->redirectToRoute('app_home');
+        if(!$project || $project->isArchived()) {
+            return $this->redirectToRoute('app_allProjects');
         };
 
         return $this->render('project/project.html.twig',[
@@ -120,6 +127,6 @@ class ProjectController extends AbstractController
         $this->entityManager->persist($project);
         $this->entityManager->flush();
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_allProjects');
     }
 }
