@@ -660,3 +660,8 @@ div#current-user .avatar {
 .errorLink{
     color: #FFFFFF
 }
+
+.qrcode{
+    display: block;
+    margin: 25px auto;
+}
