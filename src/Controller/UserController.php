@@ -27,6 +27,9 @@ class UserController extends AbstractController{
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
+        if($this->IsGranted('ROLE_USER')){
+            return $this->redirectToRoute('app_allProjects');
+        }
         return $this->render('authentification/welcome.html.twig');
     }
 
@@ -78,10 +81,16 @@ class UserController extends AbstractController{
     }
 
     #[Route('/register', name: 'app_register')]
-    public function registerUser(Request $request, UserPasswordHasherInterface $passwordHasher, GoogleAuthenticatorInterface $googleAuth): Response{
+    public function registerUser(Request $request, UserPasswordHasherInterface $passwordHasher, GoogleAuthenticatorInterface $googleAuth): Response
+    {       
+        if($this->IsGranted('ROLE_USER')){
+            return $this->redirectToRoute('app_allProjects');
+        }
+        
         $user = new User();
         $user->setStatus('CDI');
         $user->setJoinOn(new \DateTime());
+        $user->setRoles(['ROLE_USER']);
 
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
@@ -105,6 +114,10 @@ class UserController extends AbstractController{
     #[Route('/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        if($this->IsGranted('ROLE_USER')){
+            return $this->redirectToRoute('app_allProjects');
+        }
+        
         $error = $authenticationUtils->getLastAuthenticationError();
         $email = $authenticationUtils->getLastUsername();
 
